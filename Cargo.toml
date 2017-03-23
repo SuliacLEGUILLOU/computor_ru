@@ -1,0 +1,6 @@
+[package]
+name = "computor_ru"
+version = "0.1.0"
+authors = ["s18"]
+
+[dependencies]
