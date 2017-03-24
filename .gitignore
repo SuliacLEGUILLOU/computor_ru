@@ -8,3 +8,4 @@ Cargo.lock
 target
 Cargo.lock
 target
+cmake-build-debug
