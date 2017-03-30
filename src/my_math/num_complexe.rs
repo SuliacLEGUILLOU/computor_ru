@@ -1,8 +1,9 @@
 
-use std::ops;
-use std::fmt;
-
 pub mod num_complexe {
+    use std::ops;
+    use std::fmt;
+
+    #[derive(Clone, Copy)]
     pub struct NumComplexe {
         real: f32,
         imag: f32,
@@ -10,10 +11,8 @@ pub mod num_complexe {
 
     impl NumComplexe {
         pub fn new(r: f32, i:f32) -> NumComplexe {
-            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
+            let ret = NumComplexe {real: r, imag: i};
 
-            ret.real = r;
-            ret.imag = i;
             return ret;
         }
         pub fn abs(&self) -> NumComplexe {
@@ -50,101 +49,83 @@ pub mod num_complexe {
     impl fmt::Display for NumComplexe {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             if self.imag == 0.0 {
-                write!(f, "{}", self.real);
+                write!(f, "{}", self.real)
             } else if self.real == 0.0 {
-                write!(f, "{}i", self.imag);
+                write!(f, "{}i", self.imag)
             } else {
-                write!(f, "{} + {}i", self.real, self.imag);
+                write!(f, "{} + {}i", self.real, self.imag)
             }
         }
     }
 
-/*    impl Add for NumComplex {
-        type Output = NumComplex;
+    impl ops::Add for NumComplexe {
+        type Output = NumComplexe;
 
-        fn add(&self, other: NumComplex) -> NumComplex {
-            let mut ret: NumComplex;
+        fn add(self, other: NumComplexe) -> NumComplexe {
+            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
 
             ret.real = self.real + other.real;
             ret.imag = self.imag + other.imag;
             return ret;
         }
     }
-
-    impl AddAssign for NumComplex {
-        type Output = NumComplex;
-
-        fn add_assign(&mut self, other: NumComplex) -> NumComplex {
+    impl ops::AddAssign for NumComplexe {
+        fn add_assign(&mut self, other: NumComplexe) {
             self.real += other.real;
             self.imag += other.imag;
-            return self;
         }
     }
+    impl ops::Sub for NumComplexe {
+        type Output = NumComplexe;
 
-    impl Sub for NumComplex {
-        type Output = NumComplex;
-
-        fn sub(&self, other: NumComplex) -> NumComplex {
-            let mut ret: NumComplex;
+        fn sub(self, other: NumComplexe) -> NumComplexe {
+            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
 
             ret.real = self.real - other.real;
             ret.imag = self.imag - other.imag;
             return ret;
         }
     }
-
-    impl SubAssign for NumComplex {
-        type Output = NumComplex;
-
-        fn sub_assign(&mut self, other: NumComplex) -> NumComplex {
+    impl ops::SubAssign for NumComplexe {
+        fn sub_assign(&mut self, other: NumComplexe) {
             self.real -= other.real;
             self.imag -= other.imag;
-            return self;
         }
     }
 
-    impl Mul for NumComplex {
-        type Output = NumComplex;
+    impl ops::Mul for NumComplexe {
+        type Output = NumComplexe;
 
-        fn mul(&self, other: NumComplex) -> NumComplex {
-            let mut ret: NumComplex;
+        fn mul(self, other: NumComplexe) -> NumComplexe {
+            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
 
             ret.real = self.real * other.real - self.imag * other.imag;
             ret.imag = self.imag * other.real + other.real * self.imag;
             return ret;
         }
     }
-
-    impl MulAssign for NumComplex {
-        type Output = NumComplex;
-
-        fn mul_assign(&mut self, other: NumComplex) -> NumComplex {
+    impl ops::MulAssign for NumComplexe {
+        fn mul_assign(&mut self, other: NumComplexe) {
             self.real = self.real * other.real - self.imag * other.imag;
             self.imag = self.imag * other.real + other.real * self.imag;
-            return self;
         }
     }
 
-    impl Div for NumComplex {
-        type Output = NumComplex;
+    impl ops::Div for NumComplexe {
+        type Output = NumComplexe;
 
-        fn div(&self, other: NumComplex) -> NumComplex {
-            let mut ret: NumComplex;
+        fn div(self, other: NumComplexe) -> NumComplexe {
+            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
 
             ret.real = (self.real * other.real + self.imag * other.imag) / (other.real * other.real + other.imag * other.imag);
             ret.imag = (other.real * self.imag - self.real * other.imag) / (other.real * other.real + other.imag * other.imag);
             return ret;
         }
     }
-
-    impl DivAssign for NumComplex {
-        type Output = NumComplex;
-
-        fn div(&mut self, other: NumComplex) -> NumComplex {
+    impl ops::DivAssign for NumComplexe {
+        fn div_assign(&mut self, other: NumComplexe) {
             self.real = (self.real * other.real + self.imag * other.imag) / (other.real * other.real + other.imag * other.imag);
             self.imag = (other.real * self.imag - self.real * other.imag) / (other.real * other.real + other.imag * other.imag);
-            return self;
         }
     }
-    */
 }
