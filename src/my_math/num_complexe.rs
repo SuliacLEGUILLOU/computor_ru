@@ -1,10 +1,12 @@
 
+/// This sub module help represent complexe number
 pub mod num_complexe {
     use std::ops;
     use std::fmt;
 
     #[derive(Clone, Copy)]
     pub struct NumComplexe {
+        /// Complexe number are represented as R + I * i
         real: f32,
         imag: f32,
     }
@@ -15,6 +17,8 @@ pub mod num_complexe {
 
             return ret;
         }
+        ///
+        /// ## abs function return the absolute value of the number
         pub fn abs(&self) -> NumComplexe {
             let mut ret = NumComplexe {real: 0.0, imag: 0.0};
 
@@ -112,20 +116,38 @@ pub mod num_complexe {
     }
 
     impl ops::Div for NumComplexe {
-        type Output = NumComplexe;
+    type Output = NumComplexe;
 
-        fn div(self, other: NumComplexe) -> NumComplexe {
-            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
+    fn div(self, other: NumComplexe) -> NumComplexe {
+        let mut ret = NumComplexe {real: 0.0, imag: 0.0};
 
-            ret.real = (self.real * other.real + self.imag * other.imag) / (other.real * other.real + other.imag * other.imag);
-            ret.imag = (other.real * self.imag - self.real * other.imag) / (other.real * other.real + other.imag * other.imag);
-            return ret;
-        }
+        ret.real = (self.real * other.real + self.imag * other.imag) / (other.real * other.real + other.imag * other.imag);
+        ret.imag = (other.real * self.imag - self.real * other.imag) / (other.real * other.real + other.imag * other.imag);
+        return ret;
     }
+}
     impl ops::DivAssign for NumComplexe {
         fn div_assign(&mut self, other: NumComplexe) {
             self.real = (self.real * other.real + self.imag * other.imag) / (other.real * other.real + other.imag * other.imag);
             self.imag = (other.real * self.imag - self.real * other.imag) / (other.real * other.real + other.imag * other.imag);
+        }
+    }
+
+    impl ops::Rem for NumComplexe {
+        type Output = NumComplexe;
+
+        fn rem(self, other: NumComplexe) -> NumComplexe {
+            let mut ret = NumComplexe {real: 0.0, imag: 0.0};
+
+            ret.real = (self.real * other.real + self.imag * other.imag) % (other.real * other.real + other.imag * other.imag);
+            ret.imag = (other.real * self.imag - self.real * other.imag) % (other.real * other.real + other.imag * other.imag);
+            return ret;
+        }
+    }
+    impl ops::RemAssign for NumComplexe {
+        fn rem_assign(&mut self, other: NumComplexe) {
+            self.real = (self.real * other.real + self.imag * other.imag) % (other.real * other.real + other.imag * other.imag);
+            self.imag = (other.real * self.imag - self.real * other.imag) % (other.real * other.real + other.imag * other.imag);
         }
     }
 }
