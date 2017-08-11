@@ -1,5 +1,5 @@
 
-use my_math::num_complexe::num_complexe::NumComplexe;
+/*use my_math::num_complexe::num_complexe::NumComplexe;
 
 #[test]
 fn it_works() {
@@ -7,4 +7,13 @@ fn it_works() {
 
     assert_eq!(5.0, test.real);
     assert_eq!(-0.1, test.imag);
+}*/
+
+#[cfg(test)]
+mod tests {
+    /*#[test]
+    fn itlololwork() {
+        let num = true;
+        assert!(num);
+    }*/
 }

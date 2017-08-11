@@ -2,3 +2,4 @@
 //#[crate_type = "lib"];
 
 pub mod num_complexe;
+pub mod array;

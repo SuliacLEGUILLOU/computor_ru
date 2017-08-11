@@ -13,9 +13,7 @@ pub mod num_complexe {
 
     impl NumComplexe {
         pub fn new(r: f32, i:f32) -> NumComplexe {
-            let ret = NumComplexe {real: r, imag: i};
-
-            return ret;
+            return NumComplexe {real: r, imag: i};
         }
         ///
         /// ## abs function return the absolute value of the number
@@ -47,6 +45,12 @@ pub mod num_complexe {
             tmp.imag = 0.0;
             tmp = tmp.square();
             return tmp.real;
+        }
+        pub fn get_real(&self) -> f32 {
+            return self.real;
+        }
+        pub fn get_imag(&self) -> f32 {
+            return self.imag;
         }
     }
 
@@ -149,5 +153,58 @@ pub mod num_complexe {
             self.real = (self.real * other.real + self.imag * other.imag) % (other.real * other.real + other.imag * other.imag);
             self.imag = (other.real * self.imag - self.real * other.imag) % (other.real * other.real + other.imag * other.imag);
         }
+    }
+}
+
+#[cfg(test)]
+mod tests_num_complexe {
+    use NumComplexe;
+
+    #[test]
+    fn assignation() {
+        let test = NumComplexe::new(5.0, -0.1);
+
+        assert!(test.get_real() == 5.0);
+        assert!(test.get_imag() == -0.1);
+    }
+
+    #[test]
+    fn addition() {
+        let test = NumComplexe::new(5.0, -0.1);
+        let test1 = NumComplexe::new(6.0, 90.0);
+
+        let result = test + test1;
+        assert!(result.get_real() == (5.0 + 6.0));
+        assert!(result.get_imag() == (-0.1 + 90.0));
+    }
+
+    #[test]
+    fn substraction() {
+        let test = NumComplexe::new(5.0, -0.1);
+        let test1 = NumComplexe::new(6.0, 90.0);
+
+        let result = test - test1;
+        assert!(result.get_real() == (5.0 - 6.0));
+        assert!(result.get_imag() == (-0.1 - 90.0));
+    }
+
+    #[test]
+    fn multiplication() {
+        let test = NumComplexe::new(5.0, -0.1);
+        let test1 = NumComplexe::new(6.0, 90.0);
+
+        let result = test * test1;
+        assert!(result.get_real() == 39.0);
+        assert!(result.get_imag() == -1.2);
+    }
+
+    #[test]
+    fn division() {
+        let test = NumComplexe::new(5.0, -0.1);
+        let test1 = NumComplexe::new(6.0, 90.0);
+
+        let result = test / test1;
+        assert!(result.get_real() == 0.002581121);
+        assert!(result.get_imag() == -0.05538348);
     }
 }
