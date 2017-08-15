@@ -14,6 +14,7 @@ pub mod history {
             self.command.push(String::from(line));
         }
         pub fn print(&self) {
+            println!("Printing history :");
             for i in 0..self.command.len() {
                 println!("{} : {}", i, self.command[i]);
             }

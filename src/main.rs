@@ -16,7 +16,6 @@ use lexer::lexer::*;
 use my_math::num_complexe::num_complexe::NumComplexe;
 //use my_math::array::array::Array;
 use message::information::*;
-use message::warning::*;
 use message::error::*;
 use stack::stack::Stack;
 
@@ -33,20 +32,19 @@ fn main() {
             .expect("Failed to read line");
 
         let line = input.trim();
+        history.add(line);
 
         match line {
             "exit" => { break },
             "e" => { break },
             "help" => { help(); continue },
             "h" => { help(); continue },
-            "print" => { memory.clone().print_all(); continue },
-            "p" => { memory.clone().print_all(); continue },
-            "pv" => { memory.clone().print_variable(); continue },
-            "print_var" => { memory.clone().print_variable(); continue },
+            "print" => { memory.print_all(); continue },
+            "p" => { memory.print_all(); continue },
+            "pv" => { memory.print_variable(); continue },
+            "print_var" => { memory.print_variable(); continue },
             _ => { no_input() }
         }
-
-        history.add(line);
 
         parse_cmd(check_input(line));
     }
