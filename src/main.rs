@@ -1,4 +1,6 @@
 
+extern crate regex;
+
 pub mod history;
 pub mod lexer;
 pub mod parser;
@@ -24,6 +26,8 @@ fn main() {
     let mut history: History = History::new();
 
     welcome();
+
+    parse_var("90");
 
     loop {
         let mut input = String::new();
