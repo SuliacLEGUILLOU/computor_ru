@@ -1,0 +1,27 @@
+{
+	"version": "0.2.0",
+	"osx": {
+		"configurations": [
+			{
+				"name": "Main",
+				"type": "lldb-mi",
+				"request": "launch",
+				"target": "${workspaceRoot}/target/debug/computor_ru",
+				"cwd": "${workspaceRoot}",
+				"preLaunchTask": "cargo_build"
+			}
+		]
+	},
+	"linux": {
+		"configurations": [
+			{
+				"name": "Main",
+				"type": "gdb",
+				"request": "launch",
+				"target": "${workspaceRoot}/target/debug/computor_ru",
+				"cwd": "${workspaceRoot}",
+				"preLaunchTask": "cargo_build"
+			}
+		]	
+	}
+}
