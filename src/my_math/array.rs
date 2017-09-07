@@ -4,7 +4,7 @@ pub mod array {
     use std::ops;
     use std::fmt;
 
-    //#[derive(Clone, Copy)]    // I NEED THIS !
+    //#[derive(Copy)]
     pub struct Array{
         data: [[NumComplexe; 50]; 50],
         width: usize,
@@ -49,7 +49,13 @@ pub mod array {
             return self.complexe_count;
         }
 
-        pub fn inverse(&self) {}
+        pub fn get_size(&self) -> usize {
+            return self.height * self.width;
+        }
+
+        pub fn inverse(&self) {
+            panic!("Not implemented");
+        }
 
     }
 
@@ -87,5 +93,28 @@ pub mod array {
             }
             write!(f, "\n")
         }
+    }
+}
+
+#[cfg(test)]
+mod test_array {
+    use my_math::array::array::Array;
+    use my_math::num_complexe::num_complexe::NumComplexe;
+
+    /*#[test] // This test need me to implement an access to the data
+    fn test_init() {
+        let arr = Array::new_sized(10, 10);
+        assert!(arr.get_data[5][5].get_real() == 0.0);
+        let arr = Array::new_filled(10, 10, NumComplexe::new(6.0, 1.1));
+        assert!(arr.get_data[5][5].get_real == 6.0);
+    }*/
+
+    #[test]
+    fn test_get_size() {
+        let arr: Array = Array::new();
+        let arr1: Array = Array::new_sized(10, 10);
+
+        assert!(arr.get_size() == 0);
+        assert!(arr1.get_size() == 100);
     }
 }

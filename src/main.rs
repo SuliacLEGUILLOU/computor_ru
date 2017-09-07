@@ -16,7 +16,7 @@ use parser::parser::*;
 use lexer::lexer::*;
 
 use my_math::num_complexe::num_complexe::NumComplexe;
-//use my_math::array::array::Array;
+use my_math::array::array::Array;
 use message::information::*;
 use message::error::*;
 use stack::stack::Stack;
