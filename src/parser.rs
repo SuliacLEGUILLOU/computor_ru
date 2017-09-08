@@ -11,6 +11,11 @@ pub mod parser {
         return "Not implemented";
     }
 
+    /**
+     *  parse_var
+     *  String input : cleaned user detected as a variable by the lexer without the name
+     *  return : NumComplexe value of the input
+     */
     pub fn parse_var(input: &str) -> NumComplexe {
         let find_real = Regex::new(r"(-?\d+(?:\.\d+)?)[^i]?").unwrap();
         let find_imag = Regex::new(r"(-?\d+(?:\.\d+)?)i").unwrap();

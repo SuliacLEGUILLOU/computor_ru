@@ -50,7 +50,11 @@ fn main() {
             _ => { no_input() }
         }
 
-        parse_cmd(check_input(line));
+        let info: LineInfo = get_info(line);
+
+        memory.add_var(info.name, parse_var(&info.expression[..]));
+
+        //parse_cmd(check_input(line));
     }
 
     memory.clone().print_all();
