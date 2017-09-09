@@ -82,16 +82,18 @@ pub mod array {
 
     impl fmt::Display for Array {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            let mut output: String = String::new();
+
             for i in 0..self.width {
                 for j in 0..self.height {
                     if j == 0 {
-                        write!(f, "\n{}", self.data[i][j]);
+                        output = format!("{}\n{}",output, self.data[i][j]);
                     } else {
-                        write!(f, " {}", self.data[i][j]);
+                        output = format!("{} {}",output, self.data[i][j]);
                     }
                 }
             }
-            write!(f, "\n")
+            return write!(f, "{}", output);
         }
     }
 }
@@ -99,7 +101,6 @@ pub mod array {
 #[cfg(test)]
 mod test_array {
     use my_math::array::array::Array;
-    use my_math::num_complexe::num_complexe::NumComplexe;
 
     /*#[test] // This test need me to implement an access to the data
     fn test_init() {

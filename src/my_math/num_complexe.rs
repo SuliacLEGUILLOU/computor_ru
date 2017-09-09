@@ -158,7 +158,7 @@ pub mod num_complexe {
 
 #[cfg(test)]
 mod tests_num_complexe {
-    use NumComplexe;
+    use my_math::num_complexe::num_complexe::NumComplexe;
 
     #[test]
     fn assignation() {

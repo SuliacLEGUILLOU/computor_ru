@@ -7,9 +7,9 @@ pub mod parser {
     use my_math::num_complexe::num_complexe::NumComplexe;
     use regex::Regex;
 
-    pub fn parse_cmd(input: &str) -> &str {
+    /*pub fn parse_cmd(input: &str) -> &str {
         return "Not implemented";
-    }
+    }*/
 
     /**
      *  parse_var
@@ -35,7 +35,6 @@ pub mod parser {
 
 #[cfg(test)]
 mod test_parser {
-    use my_math::num_complexe::num_complexe::NumComplexe;
     use parser::parser::*;
 
     #[test]
@@ -72,6 +71,7 @@ mod test_parser {
     fn test_pos_real_float() {
         assert!(parse_var("90.5").get_real() == 90.5);
     }
+    #[test]
     fn test_pos_complex_float() {
         let num1 = parse_var("90.5+11.12i");
         let num2 = parse_var("90.5-11.12i");

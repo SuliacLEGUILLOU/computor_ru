@@ -3,12 +3,11 @@ pub mod lexer {
     pub enum LineType {
         Variable,
         Function,
-        Array,
-        none
+        Array
     }
 
     pub struct LineInfo {
-        pub lineType: LineType,
+        pub line_type: LineType,
         pub name: String,
         pub expression: String,
     }
@@ -23,7 +22,7 @@ pub mod lexer {
 
     pub fn get_info(input: &str) -> LineInfo {
         let mut ret = LineInfo {
-            lineType: LineType::Variable,
+            line_type: LineType::Variable,
             name: "".to_string(), 
             expression: "".to_string()
         };
@@ -37,5 +36,20 @@ pub mod lexer {
             panic!("Error");
         }
         return ret;
+    }
+}
+
+#[cfg(test)]
+mod test_lexer {
+    use my_math::num_complexe::num_complexe::NumComplexe;
+    use lexer::*;
+
+    #[test]
+    fn test_check_input_var_nospace() {
+        let info: lexer::LineInfo = lexer::get_info("a=3-4.3i");
+
+        //assert!(info.lineType == lexer::LineType::Variable);
+        assert!(info.name == String::from("a"));
+        assert!(info.expression == String::from("3-4.3i"));
     }
 }
