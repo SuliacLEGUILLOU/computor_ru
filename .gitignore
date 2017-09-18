@@ -12,4 +12,4 @@ cmake-build-debug
 
 # Is didn't find how to disable cmake t.t
 CMakeLists.txt
-*ftm
+*.fmt
