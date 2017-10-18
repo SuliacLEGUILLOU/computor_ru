@@ -15,6 +15,10 @@ pub mod lexer {
     pub fn check_input(input: &str) -> bool {
         return true;
     }
+    pub fn clean_input(input: &str) -> String {
+        let mut ret = input.replace(" ", "");
+        return ret;
+    }
 
     pub fn get_expression_type(input: &str) -> LineType {
         return LineType::Variable;
@@ -51,5 +55,12 @@ mod test_lexer {
         //assert!(info.lineType == lexer::LineType::Variable);
         assert!(info.name == String::from("a"));
         assert!(info.expression == String::from("3-4.3i"));
+    }
+
+    #[test]
+    fn test_check_input_cleaner() {
+        let s = "   hello world      lol...";
+
+        assert_eq!(lexer::clean_input(s).as_str(), "helloworldlol...");
     }
 }
